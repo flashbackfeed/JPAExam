@@ -6,13 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * packageName : com.example.jpaexam.service
  * fileName : EmpService
  * author : GGG
  * date : 2023-10-16
- * description :
+ * description : 회원 업무 서비스
  * 요약 :
  * <p>
  * ===========================================================
@@ -23,10 +24,23 @@ import java.util.List;
 @Service
 public class EmpService {
     @Autowired
-    EmpRepository empRepository;
+    EmpRepository empRepository; //DI
 
+    /** 전체 조회 */
     public List<Emp> findAll(){
         List<Emp> list = empRepository.findAll();
         return list;
+    }
+    
+    /** 상세 조회 */
+    public Optional<Emp> findById(int eno){
+        Optional<Emp> optionalEmp = empRepository.findById(eno);
+        return optionalEmp;
+    }
+
+    /** 저장 함수 */
+    public Emp save(Emp emp){
+        Emp emp2 = empRepository.save(emp);
+        return emp2;
     }
 }

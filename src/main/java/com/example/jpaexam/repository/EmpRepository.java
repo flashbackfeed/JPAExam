@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
  * fileName : EmpRepository
  * author : GGG
  * date : 2023-10-16
- * description :
+ * description : 사원 CRUD 함수가 있는 레포지토리
  * 요약 :
  * <p>
  * ===========================================================

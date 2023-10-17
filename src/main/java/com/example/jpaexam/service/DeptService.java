@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * packageName : com.example.jpaexam.service
@@ -29,4 +30,29 @@ public class DeptService {
         List<Dept> list = deptRepository.findAll(); // db 전체조회 함수 호출
         return list;
     }
+
+    /** 상세 조회(1건 조회) */
+    public Optional<Dept> findById(int dno){
+        Optional<Dept> optionalDept = deptRepository.findById(dno);
+        return  optionalDept;
+    }
+
+    /** 저장(수정) 함수 */
+    public Dept save(Dept dept){
+//      todo : jpa 저장함수 호출 ( 기본키 없으면 insert, 있으면 update )
+        Dept dept2 = deptRepository.save(dept);
+
+        return dept2; // 저장된 부서객체
+    }
+
+    /** 삭제 함수 */
+    public boolean removeById(int dno){
+//        existsById : jpa 함수 - 리턴값 : 있으면 true, 없으면 false
+        if(deptRepository.existsById(dno)){
+            deptRepository.deleteById(dno); // DB 삭제
+            return true;
+        }
+        return false;
+    }
+    
 }
